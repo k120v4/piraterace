@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ethers } from "ethers";
 import "./style.css";
 import InputField from './inputfield';
+import ship from './ship.webp';
 
 const contractABI = require("./PirateRace.json");
 const YOUR_CONTRACT_ADDRESS = "0x7fdb855296a72f43be5154d813fbe5cd0ee736e6";
@@ -57,7 +58,7 @@ export default function App() {
   };
 
   let fireCannon = async () => {
-    const form = nameForm.current
+    const form = nameForm.current;
     const tx = await getContract().fireCannon(form['target'].value);
   };
 
@@ -75,12 +76,12 @@ export default function App() {
   }
 
   let putInJail = async () => {
-    const form = nameForm.current
+    const form = nameForm.current;
     const tx = await getContract().fireCannon(form['address'].value);
   };
 
   let outOfJail = async () => {
-    const form = nameForm.current
+    const form = nameForm.current;
     const tx = await getContract().fireCannon(form['address'].value);
   };
 
@@ -222,7 +223,7 @@ export default function App() {
         <div>
           {!loading && (
             <div>
-
+              <img src={ship} width="50%"/> 
               <h1 class="text"> The Great Pirate Race </h1>
               <h2 class="title"> Standings </h2>
               <h3 class="text">team0: {t0}</h3>
@@ -256,7 +257,7 @@ export default function App() {
                 Fire Cannon
               </button>
               <form class="descrip" ref={nameForm}>
-              <InputField label={'target: (0-3)    '} name={'target'}/>
+              <InputField label={'target: (0-3) '} name={'target'}/>
               </form>
               
               <button onClick={buyMysteryBox} class="button">
@@ -273,9 +274,13 @@ export default function App() {
               <button onClick={outOfJail} class="button">
                 Free from jail
               </button>
-              <form class="descrip" ref={nameForm}>
+             
+              {//this breaks the above buttons for some reason 
+            }
+              <form class="descrip" ref={nameForm}> 
               <InputField label={'address: '} name={'address'}/>
               </form>
+
 
             </div>
           )}
