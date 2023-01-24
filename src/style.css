@@ -5,12 +5,18 @@
     align-items: left;
 }
 
+.font-link {
+    font-family: 'Aboreto', cursive;
+}
+
 .text {
     margin-left: 5px;
+    font-family:  'Aboreto';
 }
 
 .title {
     color: #020ddb;
+    font-family:  'Aboreto';
 }
 .log {
     border:  solid #427AA8 1px;
@@ -26,6 +32,7 @@
 }
 
 .button {
+    font-family:  'Aboreto';
     display: block;
     height: 50px;
     margin-bottom: 10px;

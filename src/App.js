@@ -267,7 +267,7 @@ export default function App() {
 
 
               <p class="descrip"> ---------------------------------------- </p>
-              <h3> Captain & First Mate Actions </h3>
+              <h3 class="text"> Captain & First Mate Actions </h3>
               <button onClick={putInJail} class="button">
                 Put in jail
               </button>
