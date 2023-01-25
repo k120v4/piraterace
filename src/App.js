@@ -1,19 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ethers } from "ethers";
 import "./style.css";
-import InputField from './inputfield';
 import ship from './ship.webp';
 
 const contractABI = require("./PirateRace.json");
 const YOUR_CONTRACT_ADDRESS = "0x7fdb855296a72f43be5154d813fbe5cd0ee736e6";
 
 export default function App() {
-  const nameForm = useRef(null);
+  const [acct, setAcct] = useState('');
+  const [query, setQuery] = useState('');
+  const [query2, setQuery2] = useState('');
+  const [query3, setQuery3] = useState('');
   const [t0, setT0] = useState(0);
   const [t1, setT1] = useState(0);
   const [t2, setT2] = useState(0);
   const [t3, setT3] = useState(0);
-  const [userScore, setuserScore] = useState(0);
+  const [t0m, setT0m] = useState(0);
+  const [t1m, setT1m] = useState(0);
+  const [t2m, setT2m] = useState(0);
+  const [t3m, setT3m] = useState(0);
   const [Eventlist, setEventlist] = useState([
     "--------------------------------", 
     "Avast Ye Hearties!", 
@@ -40,49 +45,41 @@ export default function App() {
     return contract;
   };
 
-  let joinTeam = async () => { //need text input
-    const form = nameForm.current
-    const tx = await getContract().join(form['team'].value);
+  //functions for the buttons
+  let joinTeam = async () => { 
+    const tx = await getContract().join(query3);
   };
 
   let upgradeEngine = async () => {
-    const tx = await getContract().upgradeEngine();
+    await getContract().upgradeEngine({gasLimit: 150000});
   };
 
   let upgradeAttack = async () => {
-    const tx = await getContract().upgradeAttack();
+    await getContract().upgradeAttack({gasLimit: 150000});
   };
 
   let upgradeDefense = async () => {
-    const tx = await getContract().upgradeDefense();
+    const tx = await getContract().upgradeDefense({gasLimit: 150000});
   };
 
   let fireCannon = async () => {
-    const form = nameForm.current;
-    const tx = await getContract().fireCannon(form['target'].value);
+    const tx = await getContract().fireCannon(query, {gasLimit: 150000});
   };
 
   let buyMysteryBox = async () => {
-    const tx = await getContract().buyMysteryBox();
+    const tx = await getContract().buyMysteryBox({gasLimit: 150000});
   };
 
   let updateDistance = async () => {
     const tx = await getContract().updateDistance();
   };
 
-  let getUserScore = async () => {
-    let score = await getContract().userScore(1);
-    setuserScore(score);
-  }
-
   let putInJail = async () => {
-    const form = nameForm.current;
-    const tx = await getContract().fireCannon(form['address'].value);
+    const tx = await getContract().putInJail(query2);
   };
 
   let outOfJail = async () => {
-    const form = nameForm.current;
-    const tx = await getContract().fireCannon(form['address'].value);
+    const tx = await getContract().takeOutOfJail(query2);
   };
 
   let fetchCurrentValue = async () => {
@@ -116,6 +113,7 @@ export default function App() {
       });
       console.log("Connected", accounts[0]);
       localStorage.setItem("walletAddress", accounts[0]);
+      setAcct(accounts[0]);
       setMetaMaskEnabled(true);
 
       // Listen to event
@@ -203,14 +201,14 @@ export default function App() {
 
   };
 
+  //event log string
   const updateString = (newItem) => {
     setEventlist((prevList) => {
         const updatedList = [newItem, ...prevList.slice(0,-1)];
         return updatedList;
     });
-};
+  };
 
-  
   let renderList = Eventlist.map((item, index) => 
     <p class="text" key={index}>{item}</p>
   );
@@ -223,32 +221,37 @@ export default function App() {
         <div>
           {!loading && (
             <div>
-              <img src={ship} width="50%"/> 
+              <img src={ship} width="50%" alt="pirates!"/> 
               <h1 class="text"> The Great Pirate Race </h1>
               <h2 class="title"> Standings </h2>
-              <h3 class="text">team0: {t0}</h3>
-              <h3 class="text">team1: {t1}</h3>
-              <h3 class="text">team2: {t2}</h3>
-              <h3 class="text">team3: {t3}</h3>
+              <h3 class="text">Team Ben: {t0} meters</h3>
+              <h3 class="text">Team Kila: {t1} meters</h3>
+              <h3 class="text">Team Nacho: {t2} meters</h3>
+              <h3 class="text">Team ??: {t3} meters</h3>
               <h2 class="title"> Captain's Ship Log </h2>
               <div class="log">{renderList} </div>
 
               <h2 class ="title"> User Actions </h2>
-              <button disabled={userScore > 0} onClick={joinTeam} class="button">
+              
+              <button onClick={joinTeam} class="button">
                 Join a Team
               </button>
-              <form class="descrip" ref={nameForm} >
-              <InputField label={'Teams: (0-3)    '} name={'team'}/>
-              </form>
+              <label class="descrip" >
+                Teams (0-3): 
+                <input class="descrip" value={query3} onChange={(e)=>setQuery3(e.target.value)} type="text"></input>
+              </label>
               <button onClick={updateDistance} class="button">
                 Update Standings
               </button>
+              
               <button onClick={upgradeEngine} class="button">
                 Upgrade Engine
               </button>
+              
               <button onClick={upgradeAttack} class="button">
                 Upgrade Attack
               </button>
+              
               <button onClick={upgradeDefense} class="button">
                 Upgrade Defense
               </button>
@@ -256,10 +259,11 @@ export default function App() {
               <button onClick={fireCannon} class="button">
                 Fire Cannon
               </button>
-              <form class="descrip" ref={nameForm}>
-              <InputField label={'target: (0-3) '} name={'target'}/>
-              </form>
-              
+              <label class="descrip" >
+                Target (0-3): 
+              <input class="descrip" value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
+              </label>
+
               <button onClick={buyMysteryBox} class="button">
                 Buy Mystery Box
               </button>
@@ -271,16 +275,16 @@ export default function App() {
               <button onClick={putInJail} class="button">
                 Put in jail
               </button>
+              
               <button onClick={outOfJail} class="button">
                 Free from jail
               </button>
-             
-              {//this breaks the above buttons for some reason 
-            }
-              <form class="descrip" ref={nameForm}> 
-              <InputField label={'address: '} name={'address'}/>
-              </form>
+              <label class="descrip" >
+                Address: 
+                <input class="descrip" value={query2} onChange={(e)=>setQuery2(e.target.value)} type="text"></input>
+              </label>
 
+              <p></p>
 
             </div>
           )}
