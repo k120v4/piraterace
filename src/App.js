@@ -16,7 +16,7 @@ export default function App() {
   const [t1, setT1] = useState(0);
   const [t2, setT2] = useState(0);
   const [t3, setT3] = useState(0);
-  const [t0m, setT0m] = useState(0);
+  const [t0m, setT0m] = useState(["","","","","","",""]);
   const [t1m, setT1m] = useState(0);
   const [t2m, setT2m] = useState(0);
   const [t3m, setT3m] = useState(0);
@@ -90,12 +90,16 @@ export default function App() {
   let fetchCurrentValue = async () => {
     let count_ = await getContract().teams(0);
     setT0(count_.distance.toString());
+    setT0m(count_.numPirates.toString());
     count_ = await getContract().teams(1);
     setT1(count_.distance.toString());
+    setT1m(count_.numPirates.toString());
     count_ = await getContract().teams(2);
     setT2(count_.distance.toString());
+    setT2m(count_.numPirates.toString());
     count_ = await getContract().teams(3);
     setT3(count_.distance.toString());
+    setT3m(count_.numPirates.toString());
     setLoading(false);
   };
 
@@ -246,6 +250,11 @@ export default function App() {
                 Teams (0-3): 
                 <input class="descrip" value={query3} onChange={(e)=>setQuery3(e.target.value)} type="text"></input>
               </label>
+              <p class="descrip-small"> Team Ben: {t0m} pirates </p>
+              <p class="descrip-small"> Team Kila: {t1m} pirates </p>
+              <p class="descrip-small"> Team Nacho: {t2m} pirates </p>
+              <p class="descrip-small"> Team ??: {t3m} pirates </p>
+
               <button onClick={updateDistance} class="button">
                 Update Standings
               </button>
