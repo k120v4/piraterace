@@ -4,13 +4,14 @@ import "./style.css";
 import ship from './ship.webp';
 
 const contractABI = require("./PirateRace.json");
-const YOUR_CONTRACT_ADDRESS = "0x7fdb855296a72f43be5154d813fbe5cd0ee736e6";
+const YOUR_CONTRACT_ADDRESS = "0x7dA846C97173Ec693eAb9305E5452F6978DfF2bC";
 
 export default function App() {
   const [acct, setAcct] = useState('');
   const [query, setQuery] = useState('');
   const [query2, setQuery2] = useState('');
   const [query3, setQuery3] = useState('');
+  const [query4, setQuery4] = useState('');
   const [t0, setT0] = useState(0);
   const [t1, setT1] = useState(0);
   const [t2, setT2] = useState(0);
@@ -80,6 +81,10 @@ export default function App() {
 
   let outOfJail = async () => {
     const tx = await getContract().takeOutOfJail(query2);
+  };
+
+  let checkForgedPapers = async () => {
+    const tx = await getContract().checkForgedPapers(query4);
   };
 
   let fetchCurrentValue = async () => {
@@ -268,6 +273,14 @@ export default function App() {
               <button onClick={buyMysteryBox} class="button">
                 Buy Mystery Box
               </button>
+
+              <button onClick={checkForgedPapers} class="button">
+                Check Forged Papers
+              </button>
+              <label class="descrip" >
+                Address: 
+              <input class="descrip" value={query4} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
+              </label>
               
 
 
