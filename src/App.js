@@ -52,23 +52,23 @@ export default function App() {
   };
 
   let upgradeEngine = async () => {
-    await getContract().upgradeEngine({gasLimit: 150000});
+    await getContract().upgradeEngine({gasLimit: 500000});
   };
 
   let upgradeAttack = async () => {
-    await getContract().upgradeAttack({gasLimit: 150000});
+    await getContract().upgradeAttack({gasLimit: 500000});
   };
 
   let upgradeDefense = async () => {
-    const tx = await getContract().upgradeDefense({gasLimit: 150000});
+    const tx = await getContract().upgradeDefense({gasLimit: 500000});
   };
 
   let fireCannon = async () => {
-    const tx = await getContract().fireCannon(query, {gasLimit: 150000});
+    const tx = await getContract().fireCannon(query, {gasLimit: 500000});
   };
 
   let buyMysteryBox = async () => {
-    const tx = await getContract().buyMysteryBox({gasLimit: 150000});
+    const tx = await getContract().buyMysteryBox({gasLimit: 500000});
   };
 
   let updateDistance = async () => {
