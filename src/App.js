@@ -232,7 +232,7 @@ export default function App() {
             <div>
               <img src={ship} width="50%" alt="pirates!"/> 
               <h1 class="text"> The Great Pirate Race </h1>
-              <a href="https://persistent-jackal-fef.notion.site/The-Great-Pirate-Race-91bad3d1d28a47ce8f19047622f90b93"> Game manual </a>
+              <a class="text" href="https://docs.piraterace.xyz"> Game manual </a>
               <h2 class="title"> Standings </h2>
               <h3 class="text">Team Ben: {t0} meters</h3>
               <h3 class="text">Team Kila: {t1} meters</h3>
@@ -307,6 +307,7 @@ export default function App() {
                 <input class="descrip" value={query2} onChange={(e)=>setQuery2(e.target.value)} type="text"></input>
               </label>
 
+              <p></p>
               <p></p>
 
             </div>
