@@ -160,7 +160,7 @@ Congratulations! Until your replacements arrive, the future of the project is in
               and will flood the LP with 10% of its tokens on each System Failure. The timer has also been lengthened to 1080 minutes (18 hrs).</p>
               <p class="faqb"> Tokenomics? </p>
               <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island (basically burnt if everyone keeps pressing the button!)</p>
-              <p class="faqb"> Contracts? </p>
+              <p class="faqb"> Contracts and Addresses </p>
               <p class="faq"> <a href="http://">Token</a>, <a href="http://">Island</a>, <a href="http://">Marketing wallet </a></p>
              
               <p class="descrip">===============================================================================</p>
