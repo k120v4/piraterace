@@ -1,37 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ethers } from "ethers";
 import "./style.css";
-import ship from './ship.webp';
+import lostpic from './2.jpg';
 
-const contractABI = require("./PirateRace.json");
-const YOUR_CONTRACT_ADDRESS = "0x7dA846C97173Ec693eAb9305E5452F6978DfF2bC";
+const contractABI = require("./Island.json");
+const YOUR_CONTRACT_ADDRESS = "0x6f1b3eB120dd6dE6ADdFd54dd47AB62e3f3C3812";
 
 export default function App() {
   const [acct, setAcct] = useState('');
   const [query, setQuery] = useState('');
-  const [query2, setQuery2] = useState('');
-  const [query3, setQuery3] = useState('');
-  const [query4, setQuery4] = useState('');
-  const [t0, setT0] = useState(0);
-  const [t1, setT1] = useState(0);
-  const [t2, setT2] = useState(0);
-  const [t3, setT3] = useState(0);
-  const [t0m, setT0m] = useState(["","","","","","",""]);
-  const [t1m, setT1m] = useState(0);
-  const [t2m, setT2m] = useState(0);
-  const [t3m, setT3m] = useState(0);
-  const [Eventlist, setEventlist] = useState([
-    "--------------------------------", 
-    "Avast Ye Hearties!", 
-    "--",
-    "Treasure has been spotted over yonder", 
-    "Will you be the first one to reach the loot?", 
-    "Or will your ship be sunk?", 
-    "There is only one way to find out!", 
-    "Come one, come all", 
-    "and join the Great Pirate Race", 
-    "--------------------------------"
-    ]);
+  const [countdown, setCountdown] = useState('');
   const [loading, setLoading] = useState(true);
   const [metaMaskEnabled, setMetaMaskEnabled] = useState(false);
 
@@ -47,59 +25,41 @@ export default function App() {
   };
 
   //functions for the buttons
-  let joinTeam = async () => { 
-    const tx = await getContract().join(query3);
-  };
+  let enterTheCode = async () => {
+    console.log(query)
+    if (query == 4815162342) {
+      console.log('correct');
+      await getContract().enterTheCode({gasLimit: 50000});
+    }
+    else {
+      console.log('incorrect');
 
-  let upgradeEngine = async () => {
-    await getContract().upgradeEngine({gasLimit: 500000});
-  };
+    }
 
-  let upgradeAttack = async () => {
-    await getContract().upgradeAttack({gasLimit: 500000});
   };
-
-  let upgradeDefense = async () => {
-    const tx = await getContract().upgradeDefense({gasLimit: 500000});
-  };
-
-  let fireCannon = async () => {
-    const tx = await getContract().fireCannon(query, {gasLimit: 500000});
-  };
-
-  let buyMysteryBox = async () => {
-    const tx = await getContract().buyMysteryBox({gasLimit: 500000});
-  };
-
-  let updateDistance = async () => {
-    const tx = await getContract().updateDistance();
-  };
-
-  let putInJail = async () => {
-    const tx = await getContract().putInJail(query2);
-  };
-
-  let outOfJail = async () => {
-    const tx = await getContract().takeOutOfJail(query2);
-  };
-
-  let checkForgedPapers = async () => {
-    const tx = await getContract().checkForgedPapers(query4);
-  };
-
+  
   let fetchCurrentValue = async () => {
-    let count_ = await getContract().teams(0);
-    setT0(count_.distance.toString());
-    setT0m(count_.numPirates.toString());
-    count_ = await getContract().teams(1);
-    setT1(count_.distance.toString());
-    setT1m(count_.numPirates.toString());
-    count_ = await getContract().teams(2);
-    setT2(count_.distance.toString());
-    setT2m(count_.numPirates.toString());
-    count_ = await getContract().teams(3);
-    setT3(count_.distance.toString());
-    setT3m(count_.numPirates.toString());
+    let c = await getContract().countdown();
+    
+    const datenow = +new Date()/1000
+    //console.log(+c - datenow)
+
+    //const date = new Date(+c * 1000);
+    //const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    //const year = date.getFullYear();
+    //const month = months[date.getMonth()];
+    //const dt = date.getDate();
+    //const hours = date.getHours();
+    //const minutes = "0" + date.getMinutes();
+    //const seconds = "0" + date.getSeconds();
+    //const formattedTime = `${year}-${month}-${dt} ${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
+
+    //console.log(formattedTime);
+    //setCountdown(formattedTime.toString())
+
+    const diff = new Date((+c - datenow) * 1000).toISOString().slice(11, 19);
+    setCountdown(diff.toString())
+
     setLoading(false);
   };
 
@@ -149,78 +109,15 @@ export default function App() {
 
   //event listener to update the log
   let listenToEvent = async () => {
-    getContract().on("DistanceUpdated", async (t0, t1, t2, t3, event) => {
-      console.log('distance updated')
-      setT0(+t0.toString());
-      setT1(+t1.toString());
-      setT2(+t2.toString());
-      setT3(+t3.toString());
+    getContract().on("SystemFailure", async (amountToSend) => {
+      console.log('System Failure')
     });
 
-    getContract().on("EngineUpgraded", async (sender, teamName, event) => {
-      updateString(sender.toString().substring(0,6) + "... upgraded the engine for " + teamName);
-    });
-
-    getContract().on("DefenseUpgraded", async (sender, teamName, event) => {
-      updateString(sender.toString().substring(0,6) + "... upgraded the defense for " + teamName);
-    });
-
-    getContract().on("AttackUpgraded", async (sender, teamName, event) => {
-      updateString(sender.toString().substring(0,6) + "... upgraded the attack for " + teamName);
-    });
-
-    getContract().on("TeamJoin", async (sender, teamName, money, event) => {
-      updateString(sender.toString().substring(0,6) + "... joined " + teamName + " with " + money.toString() + " munny.");
-    });
-
-    getContract().on("CannonFired", async (sender, shooter, target, hit, event) => {
-      if (hit) {
-        updateString(sender.toString().substring(0,6) + "... of " + shooter + " fired the cannon at " + target + " and hit!");
-      } else {
-        updateString(sender.toString().substring(0,6) + "... of " + shooter + " fired the cannon at " + target + " and missed!"); 
-      }
-    });
-
-    getContract().on("InJail", async (sender, teamName, event) => {
-      updateString(sender.toString().substring(0,6) + "... of " + teamName + " has been put in jail.");
-    });    
-
-    getContract().on("OutofJail", async (sender, teamName, event) => {
-      updateString(sender.toString().substring(0,6) + "... of " + teamName + " has been freed from jail.");
-    });    
-
-    getContract().on("MysteryBox", async (sender, teamName, result, event) => {
-      if (result == 0) {
-        updateString(sender.toString().substring(0,6) + "... of " + teamName + " bought a mystery box and nothing happened.");
-      }
-      else if (result == 1) {
-        updateString(sender.toString().substring(0,6) + "... of " + teamName + " bought a mystery box and got munny!");
-      }
-      else if (result == 2) {
-        updateString(sender.toString().substring(0,6) + "... of " + teamName + " bought a mystery box and got double ship upgrades!");
-      }
-      else if (result == 3) {
-        updateString(sender.toString().substring(0,6) + "... of " + teamName + " bought a mystery box and unleashed the kraken!");
-      }
-    });  
-
-    getContract().on("FirstMate", async (teamName, user, event) => {
-      updateString(user.toString().substring(0,6) + "... of " + teamName + " has been promoted to first mate! double rations!");
-    });   
-
-  };
-
-  //event log string
-  const updateString = (newItem) => {
-    setEventlist((prevList) => {
-        const updatedList = [newItem, ...prevList.slice(0,-1)];
-        return updatedList;
+    getContract().on("CodeEntered", async () => {
+      console.log('Code Entered')
+      fetchCurrentValue(); 
     });
   };
-
-  let renderList = Eventlist.map((item, index) => 
-    <p class="text" key={index}>{item}</p>
-  );
 
   return (
     <div class="root">
@@ -230,85 +127,48 @@ export default function App() {
         <div>
           {!loading && (
             <div>
-              <img src={ship} width="50%" alt="pirates!"/> 
-              <h1 class="text"> The Great Pirate Race </h1>
-              <a class="text" href="https://docs.piraterace.xyz"> Game manual </a>
-              <h2 class="title"> Standings </h2>
-              <h3 class="text">Team Ben: {t0} meters</h3>
-              <h3 class="text">Team Kila: {t1} meters</h3>
-              <h3 class="text">Team Nacho: {t2} meters</h3>
-              <h3 class="text">Team ??: {t3} meters</h3>
-              <h2 class="title"> Captain's Ship Log </h2>
-              <div class="log">{renderList} </div>
+              <p class="blank"> ..</p>
+              <h1 class="title">{countdown} </h1>
+              <h3 class="text"> Every 1080 minutes, the button must be pushed. From the moment the alarm sounds, you will have four minutes to enter the code into the microcomputer processor.
 
-              <h2 class ="title"> User Actions </h2>
+Either you or your partners must input the code. It is highly recommended that you and your partners take alternating shifts. In this manner you will all stay fresh and alert.
+
+Congratulations! Until your replacements arrive, the future of the project is in your hands. On behalf of the Degroots, Alvar Hanso and all of us at the Dharma Initiative, thank you. Namaste. And good luck.</h3>
+
               
-              <button onClick={joinTeam} class="button">
-                Join a Team
-              </button>
+              
               <label class="descrip" >
-                Teams (0-3): 
-                <input class="descrip" value={query3} onChange={(e)=>setQuery3(e.target.value)} type="text"></input>
+                Type in the numbers (no spaces or commas): 
+                <input value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
               </label>
-              <p class="descrip-small"> Team Ben: {t0m} pirates </p>
-              <p class="descrip-small"> Team Kila: {t1m} pirates </p>
-              <p class="descrip-small"> Team Nacho: {t2m} pirates </p>
-              <p class="descrip-small"> Team ??: {t3m} pirates </p>
-
-              <button onClick={updateDistance} class="button">
-                Update Standings
-              </button>
-              
-              <button onClick={upgradeEngine} class="button">
-                Upgrade Engine
-              </button>
-              
-              <button onClick={upgradeAttack} class="button">
-                Upgrade Attack
-              </button>
-              
-              <button onClick={upgradeDefense} class="button">
-                Upgrade Defense
-              </button>
-              
-              <button onClick={fireCannon} class="button">
-                Fire Cannon
-              </button>
-              <label class="descrip" >
-                Target (0-3): 
-              <input class="descrip" value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
-              </label>
-
-              <button onClick={buyMysteryBox} class="button">
-                Buy Mystery Box
+              <button onClick={enterTheCode} class="button">
+                EXECUTE
               </button>
 
-              <button onClick={checkForgedPapers} class="button">
-                Check Forged Papers
-              </button>
-              <label class="descrip" >
-                Address: 
-              <input class="descrip" value={query4} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
-              </label>
-              
-
-
-              <p class="descrip"> ---------------------------------------- </p>
-              <h3 class="text"> Captain & First Mate Actions </h3>
-              <button onClick={putInJail} class="button">
-                Put in jail
-              </button>
-              
-              <button onClick={outOfJail} class="button">
-                Free from jail
-              </button>
-              <label class="descrip" >
-                Address: 
-                <input class="descrip" value={query2} onChange={(e)=>setQuery2(e.target.value)} type="text"></input>
-              </label>
-
+              <p class="descrip">===============================================================================</p>
               <p></p>
-              <p></p>
+
+              <h3 class="faqtitle"> FAQ </h3>
+              <p class="faqb"> What is this? </p>
+              <p class="faq"> $LOST is a memecoin based on the TV Show Lost. No presale, no tax, LP locked, no owner, no fuss. </p>
+              <p class="faqb"> What are the numbers? </p>
+              <p class="faq"> 4 8 15 16 23 42</p>
+              <p class="faqb"> What happens if the timer runs out? </p>
+              <p class="faq"> System Failure. Occupants of the Swan station followed a protocol in which they typed a sequence into a computer every 
+              1080 minutes. Typing these numbers and pressing "execute" (a.k.a. pushing the button) on the keyboard
+              averts worldwide catastrophe. Worldwide catastrophe in our case means number go down. The Island holds 50% of the tokens 
+              and will flood the LP with 10% of its tokens on each System Failure.</p>
+              <p class="faqb"> Tokenomics? </p>
+              <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island (basically burnt if everyone keeps pressing the button!)</p>
+              <p class="faqb"> Contracts? </p>
+              <p class="faq"> <a href="http://">Token</a>, <a href="http://">Island</a>, <a href="http://">Marketing wallet </a></p>
+             
+              <p class="descrip">===============================================================================</p>
+              <img src={lostpic} width="30%"/>
+              
+             
+
+              
 
             </div>
           )}

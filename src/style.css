@@ -1,23 +1,63 @@
 .root {
-    display: flex;
-    justify-content: left;
+    
     height: 180vh;
-    align-items: left;
+    align-items: center;
+    background-color: #303030;
+    text-align: center;
+
 }
 
 .font-link {
-    font-family: 'Aboreto', cursive;
+    font-family: 'Rockwell', cursive;
 }
 
 .text {
-    margin-left: 5px;
-    font-family:  'Aboreto';
+    margin-left: auto;
+    margin-right: auto;
+    color:#00cc00;
+    font-family:  'serif';
+    word-spacing: 1px;
+    background-color: #202020;
+    line-height: 40px;
+    width: 80%;
+
 }
 
 .title {
-    color: #020ddb;
-    font-family:  'Aboreto';
+    color: #FFF;
+    font-family:  'Rockwell';
+    background-color: #000;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+
 }
+
+.faqtitle {
+    color: #00cc00;
+        text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.faq {
+    color: #c0c0c0;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 69%;
+
+}
+.faqb {
+    color: #fff;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+
 .log {
     border:  solid #427AA8 1px;
     border-radius:  5px;
@@ -29,39 +69,44 @@
 
 .descrip {
     margin-left: 30px;
-    font-family:  'Aboreto';
+    font-family:  'Rockwell';
+    color: #fff;
 }
 
 .descrip-small {
     font-size: small;
     margin-left: 40px;
-    font-family:  'Aboreto';
+    font-family:  'Rockwell';
 }
 
 .button {
-    font-family:  'Aboreto';
+    font-family:  'Rockwell';
     display: block;
     height: 50px;
     margin-bottom: 10px;
-    text-align: left;
+    align-items: center;
     line-height: 30px;
     font-size: large;
-    width: 350px;
+    width: 30%;
     margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
     
     color: #FFF;
-    text-align: left;
-    border: solid #427AA8 1px;
-    border-radius: 5px;
+    text-align: center;
     text-decoration: none;
-    background: #427AA8;
+    background: #606060;
 }
 
 .button:hover {
     cursor: pointer;
-    background: #59A3E0;
+    background: #707070;
     text-decoration: none;
     filter: none;
+}
+
+a:link {
+    color:#c0c0c0;
 }
 
 .loader {
