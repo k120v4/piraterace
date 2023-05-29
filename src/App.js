@@ -155,9 +155,9 @@ Congratulations! Until your replacements arrive, the future of the project is in
               <p class="faq"> 4 8 15 16 23 42</p>
               <p class="faqb"> What happens if the timer runs out? </p>
               <p class="faq"> System Failure. Occupants of the Swan station followed a protocol in which they typed a sequence into a computer every 
-              1080 minutes. Typing these numbers and pressing "execute" (a.k.a. pushing the button) on the keyboard
-              averts worldwide catastrophe. Worldwide catastrophe in our case means number go down. The Island holds 50% of the tokens 
-              and will flood the LP with 10% of its tokens on each System Failure.</p>
+              108 minutes. Typing these numbers and pressing "execute" (a.k.a. pushing the button) on the keyboard
+              averts worldwide catastrophe. Worldwide catastrophe in our case means number go down. The Island holds 45% of the tokens 
+              and will flood the LP with 10% of its tokens on each System Failure. The timer has also been lengthened to 1080 minutes (18 hrs).</p>
               <p class="faqb"> Tokenomics? </p>
               <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island (basically burnt if everyone keeps pressing the button!)</p>
               <p class="faqb"> Contracts? </p>
