@@ -162,6 +162,8 @@ Congratulations! Until your replacements arrive, the future of the project is in
               <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island (basically burnt if everyone keeps pressing the button!)</p>
               <p class="faqb"> Contracts and Addresses </p>
               <p class="faq"> <a href="http://">Token</a>, <a href="http://">Island</a>, <a href="http://">Marketing wallet </a></p>
+              <p class="faqb"> Links </p>
+              <p class="faq"> <a href="http://">Twitter</a>, <a href="http://">Discord</a></p>
              
               <p class="descrip">===============================================================================</p>
               <img src={lostpic} width="30%"/>
