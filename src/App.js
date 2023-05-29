@@ -12,6 +12,7 @@ export default function App() {
   const [countdown, setCountdown] = useState('');
   const [loading, setLoading] = useState(true);
   const [metaMaskEnabled, setMetaMaskEnabled] = useState(false);
+  const [systemFailure, setSystemFailure] = useState(false);
 
   let getContract = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -111,10 +112,12 @@ export default function App() {
   let listenToEvent = async () => {
     getContract().on("SystemFailure", async (amountToSend) => {
       console.log('System Failure')
+      setSystemFailure(true);
     });
 
     getContract().on("CodeEntered", async () => {
       console.log('Code Entered')
+      setSystemFailure(false);
       fetchCurrentValue(); 
     });
   };
@@ -128,7 +131,8 @@ export default function App() {
           {!loading && (
             <div>
               <p class="blank"> ..</p>
-              <h1 class="title">{countdown} </h1>
+              {!systemFailure && <h1 class="title">{countdown} </h1>}
+              {systemFailure && <h1 class="redtitle">XX:XX:XX </h1>}
               <h3 class="text"> Every 1080 minutes, the button must be pushed. From the moment the alarm sounds, you will have four minutes to enter the code into the microcomputer processor.
 
 Either you or your partners must input the code. It is highly recommended that you and your partners take alternating shifts. In this manner you will all stay fresh and alert.

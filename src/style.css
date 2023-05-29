@@ -30,7 +30,17 @@
     margin-left: auto;
     margin-right: auto;
     width: 10%;
+    min-width: 130px;
+}
 
+.redtitle {
+    color: red;
+    font-family:  'Rockwell';
+    background-color: #000;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    min-width: 180px;
 }
 
 .faqtitle {
