@@ -175,6 +175,8 @@ export default function App() {
                               <a href="http://"> Uniswap</a> </p>
              
               <p class="faqb"> Any last words? </p>
+              <p class="faq"> Launch date TBD, will announce in socials </p>
+              
               <p class="faq"> Congratulations! Until your replacements arrive, the future of the project is in your hands. 
                             On behalf of the Degroots, Alvar Hanso and all of us at the Dharma Initiative, thank you. Namaste. And good luck. </p>
                               
