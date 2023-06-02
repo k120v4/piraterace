@@ -142,7 +142,7 @@ export default function App() {
         {!metaMaskEnabled && (
           <div>
             <button onClick={checkedWallet} class="button">
-              CONNECT TO METAMASK
+              CONNECT
             </button>
           </div>
           )}
