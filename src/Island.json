@@ -88,10 +88,5 @@
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ],
-  "sha1": "65459ca92b59796cce25df70bc3afb614a1ac817",
-  "source": "// SPDX-License-Identifier: None\npragma solidity 0.8.20;\nimport \"../interfaces/IERC20.sol\";\n\ncontract Island {\n    uint256 public countdown;\n    address public lostAddress;\n    address public poolAddress;\n\n    event SystemFailure(uint256 amountToSend);\n    event CodeEntered();\n\n    constructor(address _lostAddress, address _poolAddress) {\n        lostAddress = _lostAddress;\n        poolAddress = _poolAddress;\n        countdown = block.timestamp;\n    }\n\n    function systemFailure() external {\n        require(block.timestamp > countdown, \"\");\n\n        countdown = block.timestamp + 18 hours;\n        uint256 amountToSend = (IERC20(lostAddress).balanceOf(address(this)) * 10) / 100;\n        IERC20(lostAddress).transfer(poolAddress, amountToSend);\n        emit SystemFailure(amountToSend);\n    }\n\n    function enterTheCode() external {\n        countdown = block.timestamp + 18 hours;\n        emit CodeEntered();\n    }\n}\n",
-  "sourceMap": "93:829:1:-:0;;;283:172;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;349:11;:26;;-1:-1:-1;;;;;349:26:1;;;-1:-1:-1;;;;;;349:26:1;;;;;;;385:11;:26;;;;;;;;;;;433:15;349:11;421:27;93:829;;14:177:3;93:13;;-1:-1:-1;;;;;135:31:3;;125:42;;115:70;;181:1;178;171:12;115:70;14:177;;;:::o;196:293::-;275:6;283;336:2;324:9;315:7;311:23;307:32;304:52;;;352:1;349;342:12;304:52;375:40;405:9;375:40;:::i;:::-;365:50;;434:49;479:2;468:9;464:18;434:49;:::i;:::-;424:59;;196:293;;;;;:::o;:::-;93:829:1;;;;;;",
-  "sourcePath": "contracts/Island.sol",
-  "type": "contract"
+  ]
 }
