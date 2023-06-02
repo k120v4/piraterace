@@ -123,7 +123,13 @@ export default function App() {
 
   return (
     <div class="root">
-      {!metaMaskEnabled && <h1>Connect to Metamask</h1>}
+      {!metaMaskEnabled && (
+        <div>
+          <button onClick={checkedWallet} class="button">
+                CONNECT TO METAMASK
+              </button>
+        </div>
+        )}
       
       {metaMaskEnabled && (
         <div>
@@ -135,14 +141,13 @@ export default function App() {
               <img src={computer} width="50%"/>
               <p></p>
               <label class="descrip" >
-                > Type in the numbers with spaces: 
+                >: Type in the numbers with spaces: &nbsp;
                 <input value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
               </label>
               <button onClick={enterTheCode} class="button">
                 EXECUTE
               </button>
 
-              <p class="descrip">===============================================================================</p>
               <p></p>
 
               <h3 class="faqtitle"> FAQ </h3>
@@ -159,20 +164,21 @@ export default function App() {
               and will flood the LP with 10% of its tokens on each System Failure. The countdown will then be automatically reset.</p>
              
               <p class="faqb"> Tokenomics? </p>
-              <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island (basically burnt if everyone keeps pressing the button!)</p>
+              <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island 
+              (effectively burnt if everyone keeps pressing the button! The island tokens cannot be moved otherwise.)</p>
              
               <p class="faqb"> Contracts and Addresses </p>
              
-              <p class="faq"> Mainnet: <a href="http://"> Token</a>, 
-                                      <a href="http://"> Island</a>, 
-                                      <a href="http://"> Marketing wallet </a></p>
+              <p class="faq"> Mainnet: <a href="http://"> Token</a>,&nbsp;
+                                      <a href="http://">Island</a>,&nbsp;
+                                      <a href="http://">Marketing wallet </a></p>
              
               <p class="faqb"> Links </p>
-              <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>, 
-                              <a href="http://"> Discord</a>, 
-                              <a href="http://"> Dextools</a>, 
-                              <a href="http://"> CMC</a>, 
-                              <a href="http://"> Uniswap</a> </p>
+              <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>,&nbsp;
+                              <a href="http://">Discord</a>,&nbsp;
+                              <a href="http://">Dextools</a>,&nbsp;
+                              <a href="http://">CMC</a>,&nbsp;
+                              <a href="http://">Uniswap</a> </p>
              
               <p class="faqb"> Any last words? </p>
               <p class="faq"> Launch date TBD, will announce in socials </p>

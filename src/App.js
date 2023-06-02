@@ -123,75 +123,70 @@ export default function App() {
 
   return (
     <div class="root">
-      {!metaMaskEnabled && <h1>Connect to Metamask</h1>}
-      
+      <p class="blank"> ..</p>
+      {!systemFailure && <h1 class="title">{countdown} </h1>}
+      {systemFailure && <h1 class="redtitle">XX:XX:XX </h1>}
+      <img src={computer} width="50%"/>
+      <p></p>
       {metaMaskEnabled && (
         <div>
-          {!loading && (
-            <div>
-              <p class="blank"> ..</p>
-              {!systemFailure && <h1 class="title">{countdown} </h1>}
-              {systemFailure && <h1 class="redtitle">XX:XX:XX </h1>}
-              <img src={computer} width="50%"/>
-              <p></p>
-              <label class="descrip" >
-                > Type in the numbers with spaces: 
-                <input value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
-              </label>
-              <button onClick={enterTheCode} class="button">
-                EXECUTE
-              </button>
-
-              <p class="descrip">===============================================================================</p>
-              <p></p>
-
-              <h3 class="faqtitle"> FAQ </h3>
-              <p class="faqb"> What is this? </p>
-              <p class="faq"> $LOST is a memecoin inspired by the TV series Lost. No presale, no tax, LP locked, no owner, no whitelist, no fuss. 
-              Every 1080 minutes (18hrs), the button must be pushed. It is highly recommended that you and your partners take alternating shifts. 
-              In this manner you will all stay fresh and alert.</p>
-
-              <p class="faqb"> What are the numbers? </p>
-              <p class="faq"> 4 8 15 16 23 42</p>
-             
-              <p class="faqb"> What happens if the timer runs out? </p>
-              <p class="faq"> A catastrophic System Failure event aka number go down. The Island holds tokens 
-              and will flood the LP with 10% of its tokens on each System Failure. The countdown will then be automatically reset.</p>
-             
-              <p class="faqb"> Tokenomics? </p>
-              <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island (basically burnt if everyone keeps pressing the button!)</p>
-             
-              <p class="faqb"> Contracts and Addresses </p>
-             
-              <p class="faq"> Mainnet: <a href="http://"> Token</a>, 
-                                      <a href="http://"> Island</a>, 
-                                      <a href="http://"> Marketing wallet </a></p>
-             
-              <p class="faqb"> Links </p>
-              <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>, 
-                              <a href="http://"> Discord</a>, 
-                              <a href="http://"> Dextools</a>, 
-                              <a href="http://"> CMC</a>, 
-                              <a href="http://"> Uniswap</a> </p>
-             
-              <p class="faqb"> Any last words? </p>
-              <p class="faq"> Launch date TBD, will announce in socials </p>
-              
-              <p class="faq"> Congratulations! Until your replacements arrive, the future of the project is in your hands. 
-                            On behalf of the Degroots, Alvar Hanso and all of us at the Dharma Initiative, thank you. Namaste. And good luck. </p>
-                              
-             
-    
-              <p class="blank"> ..</p>           
-             
-
-              
-
-            </div>
-          )}
-          {loading && <div class="loader"></div>}
+          <label class="descrip" >
+            >: Type in the numbers with spaces: &nbsp;
+          <input value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
+          </label>
+          <button onClick={enterTheCode} class="button">
+            EXECUTE
+          </button>
         </div>
-      )}
+        )}
+        {!metaMaskEnabled && (
+          <div>
+            <button onClick={checkedWallet} class="button">
+              CONNECT TO METAMASK
+            </button>
+          </div>
+          )}
+      <p></p>
+
+      <h3 class="faqtitle"> FAQ </h3>
+      <p class="faqb"> What is this? </p>
+      <p class="faq"> $LOST is a memecoin inspired by the TV series Lost. No presale, no tax, LP locked, no owner, no whitelist, no fuss. 
+      Every 1080 minutes (18hrs), the button must be pushed. It is highly recommended that you and your partners take alternating shifts. 
+      In this manner you will all stay fresh and alert.</p>
+
+      <p class="faqb"> What are the numbers? </p>
+      <p class="faq"> 4 8 15 16 23 42</p>
+     
+      <p class="faqb"> What happens if the timer runs out? </p>
+      <p class="faq"> A catastrophic System Failure event aka number go down. The Island holds tokens 
+      and will flood the LP with 10% of its tokens on each System Failure. The countdown will then be automatically reset.</p>
+     
+      <p class="faqb"> Tokenomics? </p>
+      <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island 
+      (effectively burnt if everyone keeps pressing the button! The island tokens cannot be moved otherwise.)</p>
+     
+      <p class="faqb"> Contracts and Addresses </p>
+     
+      <p class="faq"> Mainnet: <a href="http://"> Token</a>,&nbsp;
+                              <a href="http://">Island</a>,&nbsp;
+                              <a href="http://">Marketing wallet </a></p>
+     
+      <p class="faqb"> Links </p>
+      <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>,&nbsp;
+                      <a href="http://">Discord</a>,&nbsp;
+                      <a href="http://">Dextools</a>,&nbsp;
+                      <a href="http://">CMC</a>,&nbsp;
+                      <a href="http://">Uniswap</a> </p>
+     
+      <p class="faqb"> Any last words? </p>
+      <p class="faq"> Launch date TBD, will announce in socials </p>
+      
+      <p class="faq"> Congratulations! Until your replacements arrive, the future of the project is in your hands. 
+                    On behalf of the Degroots, Alvar Hanso and all of us at the Dharma Initiative, thank you. Namaste. And good luck. </p>
+                      
+     
+
+      <p class="blank"> ..</p>           
     </div>
   );
 }

@@ -31,7 +31,7 @@
     margin-right: auto;
     width: 10%;
     min-width: 130px;
-    
+
 }
 
 .redtitle {
@@ -79,9 +79,9 @@
 }
 
 .descrip {
-    margin-left: 30px;
+    margin-left: 20px;
     font-family:  'Rockwell';
-    color: #fff;
+    color: #00cc00;
 }
 
 .descrip-small {
