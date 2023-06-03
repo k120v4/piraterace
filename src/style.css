@@ -1,6 +1,6 @@
 .root {
     
-    
+    font-family:  'Courier Prime';
     align-items: center;
     background-color: #303030;
     text-align: center;
@@ -8,14 +8,13 @@
 }
 
 .font-link {
-    font-family: 'Rockwell', cursive;
+    font-family: 'Courier Prime', cursive;
 }
 
 .text {
     margin-left: auto;
     margin-right: auto;
     color:#00cc00;
-    font-family:  'serif';
     word-spacing: 1px;
     background-color: #202020;
     line-height: 40px;
@@ -25,18 +24,16 @@
 
 .title {
     color: #FFF;
-    font-family:  'Rockwell';
     background-color: #000;
     margin-left: auto;
     margin-right: auto;
-    width: 10%;
+    width: 160px;
     min-width: 130px;
 
 }
 
 .redtitle {
     color: red;
-    font-family:  'Rockwell';
     background-color: #000;
     margin-left: auto;
     margin-right: auto;
@@ -80,25 +77,22 @@
 
 .descrip {
     margin-left: 20px;
-    font-family:  'Rockwell';
     color: #00cc00;
 }
 
 .descrip-small {
     font-size: small;
     margin-left: 40px;
-    font-family:  'Rockwell';
 }
 
 .button {
-    font-family:  'Rockwell';
     display: block;
     height: 50px;
     margin-bottom: 10px;
     align-items: center;
     line-height: 30px;
     font-size: large;
-    width: 30%;
+    width: 130px;
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
