@@ -173,7 +173,7 @@ export default function App() {
      
       <p class="faqb"> Links </p>
       <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>,&nbsp;
-                      <a href="http://">Discord</a>,&nbsp;
+                      <a href="https://discord.gg/qvbznY5u">Discord</a>,&nbsp;
                       <a href="http://">Dextools</a>,&nbsp;
                       <a href="http://">CMC</a>,&nbsp;
                       <a href="http://">Uniswap</a> </p>
