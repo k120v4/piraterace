@@ -156,13 +156,13 @@ export default function App() {
       <p class="faqb"> Contracts and Addresses </p>
      
       <p class="faq"> Mainnet: <a href="https://etherscan.io/token/0x95a45e4c3a8ac8a65c89c114ed3c9f3114da3931"> Token</a>,&nbsp;
-                              <a href="http://">Island</a>,&nbsp;
+                              <a href="https://etherscan.io/address/0x857f6701b53ab2867064c7313d9bbc027860c86c">Island</a>,&nbsp;
                               <a href="https://etherscan.io/address/0x416fe07819a6d937eb019003496a8cc91175f119">Marketing wallet </a></p>
      
       <p class="faqb"> Links </p>
       <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>,&nbsp;
                       <a href="https://discord.gg/qvbznY5u">Discord</a>,&nbsp;
-                      <a href="http://">Dextools</a>,&nbsp;
+                      <a href="https://www.dextools.io/app/en/ether/pair-explorer/0x1d5430720516011baac8737723966c382e26a45f">Dextools</a>,&nbsp;
                       <a href="http://">CMC</a>,&nbsp;
                       <a href="http://">Uniswap</a> </p>
      
