@@ -159,17 +159,17 @@ export default function App() {
      
       <p class="faqb"> What happens if the timer runs out? </p>
       <p class="faq"> A catastrophic System Failure event aka number go down. The Island holds tokens 
-      and will flood the LP with 10% of its tokens on each System Failure. The countdown will then be automatically reset.</p>
+      and will flood the LP with 10% of tokens on each System Failure. The countdown will then be automatically reset.</p>
      
       <p class="faqb"> Tokenomics? </p>
       <p class="faq"> 1,000,000,000,000 token supply, 10% CEX/marketing, 45% LP, 45% island 
-      (effectively burnt if everyone keeps pressing the button! The island tokens cannot be moved otherwise.)</p>
+      (effectively burnt if everyone keeps pressing the button! The island's tokens cannot be moved otherwise.)</p>
      
       <p class="faqb"> Contracts and Addresses </p>
      
-      <p class="faq"> Mainnet: <a href="http://"> Token</a>,&nbsp;
+      <p class="faq"> Mainnet: <a href="https://etherscan.io/token/0x95a45e4c3a8ac8a65c89c114ed3c9f3114da3931"> Token</a>,&nbsp;
                               <a href="http://">Island</a>,&nbsp;
-                              <a href="http://">Marketing wallet </a></p>
+                              <a href="https://etherscan.io/address/0x416fe07819a6d937eb019003496a8cc91175f119">Marketing wallet </a></p>
      
       <p class="faqb"> Links </p>
       <p class="faq"> <a href="https://twitter.com/lostcoin_eth"> Twitter</a>,&nbsp;
