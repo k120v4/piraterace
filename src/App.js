@@ -5,7 +5,7 @@ import lostpic from './2.jpg';
 import computer from './computer.png';
 
 const contractABI = require("./Island.json");
-const YOUR_CONTRACT_ADDRESS = "0x6f1b3eB120dd6dE6ADdFd54dd47AB62e3f3C3812";
+const YOUR_CONTRACT_ADDRESS = "0x857f6701b53Ab2867064c7313d9bbC027860c86C";
 
 export default function App() {
   const [acct, setAcct] = useState('');
