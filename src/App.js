@@ -42,20 +42,6 @@ export default function App() {
     let c = await getContract().countdown();
     
     const datenow = +new Date()/1000
-    //console.log(+c - datenow)
-
-    //const date = new Date(+c * 1000);
-    //const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    //const year = date.getFullYear();
-    //const month = months[date.getMonth()];
-    //const dt = date.getDate();
-    //const hours = date.getHours();
-    //const minutes = "0" + date.getMinutes();
-    //const seconds = "0" + date.getSeconds();
-    //const formattedTime = `${year}-${month}-${dt} ${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
-
-    //console.log(formattedTime);
-    //setCountdown(formattedTime.toString())
 
     const diff = new Date((+c - datenow) * 1000).toISOString().slice(11, 19);
     setCountdown(diff.toString())
@@ -78,7 +64,7 @@ export default function App() {
       });
       await ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: `0x${Number(137).toString(16)}` }],
+        params: [{ chainId: `0x${Number(1).toString(16)}` }],
       });
       console.log("Connected", accounts[0]);
       localStorage.setItem("walletAddress", accounts[0]);
@@ -131,6 +117,8 @@ export default function App() {
       {metaMaskEnabled && (
         <div>
           <label class="descrip" >
+            >: Connected to {acct} 
+            <p></p>
             >: Type in the numbers with spaces: &nbsp;
           <input value={query} onChange={(e)=>setQuery(e.target.value)} type="text"></input>
           </label>
@@ -179,8 +167,7 @@ export default function App() {
                       <a href="http://">Uniswap</a> </p>
      
       <p class="faqb"> Any last words? </p>
-      <p class="faq"> Launch date TBD, will announce in socials </p>
-      
+            
       <p class="faq"> Congratulations! Until your replacements arrive, the future of the project is in your hands. 
                     On behalf of the Degroots, Alvar Hanso and all of us at the Dharma Initiative, thank you. Namaste. And good luck. </p>
                       
